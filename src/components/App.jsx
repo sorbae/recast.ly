@@ -23,7 +23,15 @@
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      videos: window.exampleVideoData,
+      playingVideo: window.exampleVideoData[0]
+    };
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+  
+  clickHandler(e) {
+    this.setState({playingVideo: e.video});
   }
   
   render() {
@@ -36,10 +44,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer />
+            <VideoPlayer video = {this.state.playingVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos = {window.exampleVideoData}/>
+            <VideoList videos = {this.state.videos} clickie = {this.clickHandler}/>
           </div>
         </div>
       </div>
