@@ -25,9 +25,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       videos: window.exampleVideoData,
-      playingVideo: window.exampleVideoData[0]
+      playingVideo: window.exampleVideoData[0],
     };
     this.clickHandler = this.clickHandler.bind(this);
+    this.searchBar = this.searchBar.bind(this);
   }
   
   componentDidMount() {
@@ -39,13 +40,19 @@ class App extends React.Component {
   clickHandler(e) {
     this.setState({playingVideo: e.video});
   }
+
+  searchBar(e) {
+    var context = this; 
+    searchYouTube(e,
+      function(data) { context.setState({videos: data, 'playingVideo': data[0]}); });
+  }
   
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search search = {this.searchBar}/>
           </div>
         </nav>
         <div className="row">
