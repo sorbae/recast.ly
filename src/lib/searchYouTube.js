@@ -1,9 +1,8 @@
-var searchYouTube = (options, callback) => {
-  console.log(options);
+var searchYouTube = (query, callback) => {
   var data = {
-    q: options.query,
-    key: options.key,
-    maxResults: options.max,
+    q: query,
+    key: window.YOUTUBE_API_KEY,
+    maxResults: '5',
     part: 'snippet',
     type: 'video',
     videoEmbeddable: 'true'
@@ -17,8 +16,6 @@ var searchYouTube = (options, callback) => {
     success: function(data) {
       console.log('success');
       callback(data.items);
-
- 
     },
     
     error: function(data) {

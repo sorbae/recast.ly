@@ -21,13 +21,19 @@
 // window.App = App;
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       videos: window.exampleVideoData,
       playingVideo: window.exampleVideoData[0]
     };
     this.clickHandler = this.clickHandler.bind(this);
+  }
+  
+  componentDidMount() {
+    var context = this;    
+    searchYouTube('cats',
+      function(data) { context.setState({videos: data, 'playingVideo': data[0]}); });
   }
   
   clickHandler(e) {
@@ -55,8 +61,5 @@ class App extends React.Component {
   }
   
 }
-
-
-
 
 
