@@ -22,6 +22,7 @@ var searchYouTube = (query, callback) => {
       console.log('failure', data);
     }
   });
+
 };
 
 window.searchYouTube = _.debounce(searchYouTube, 500);
